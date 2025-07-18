@@ -16,7 +16,7 @@ app = FastAPI(title='TVK API')
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify your frontend URL
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -30,6 +30,7 @@ app.include_router(campaign_routes.router, prefix="/api/campaign",tags=["campaig
 app.include_router(organization_route.router, prefix="/api/org", tags=["Organization"])
 app.include_router(district_route.router, prefix="/api/district", tags=["Districts"])
 app.include_router(constituency_route.router, prefix="/api/district", tags=["Constituency"])
+app.include_router(category_route.router, prefix="/api/category", tags=["Category"])
 
 @app.on_event('startup')
 async def startUp():
