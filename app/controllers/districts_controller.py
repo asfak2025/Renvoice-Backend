@@ -60,3 +60,21 @@ async def delete_district(district_id: str):
         raise HTTPException(status_code=404, detail="District not found")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+async def filter_districts(district_id: str= None, name: str = None):
+    try:
+        query={}
+        if district_id:
+            query["district_id"]= district_id
+        if name:
+            query["name"] ={"$regex" : name, "$options" : "i"}
+
+        cursor = district_collection.find(query)
+        results = []
+        async for doc in cursor:
+            doc["_id"] = str(doc["_id"])
+            results.append(doc)
+
+        return {"results": results}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
