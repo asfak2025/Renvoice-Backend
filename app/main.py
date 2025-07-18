@@ -8,7 +8,7 @@ from app.routes import organization_route
 from app.routes import constituency_route
 
 from app.routes import campaign_routes
-
+from app.routes import category_route
 from app.validators.middleware_validation import ValidationErrorMiddleware
 
 app = FastAPI(title='TVK API')

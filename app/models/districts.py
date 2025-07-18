@@ -7,7 +7,7 @@ class DistrictCreate(BaseModel):
 
 
 class DistrictDB(DistrictCreate):
-    district_id: str
+    districtId: str
     createdAt: int
     updatedAt: int
     constituency: List = []
