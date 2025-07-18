@@ -2,8 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi.security import OAuth2PasswordBearer
+from app.routes import district_route
 
 from app.routes import organization_route
+from app.routes import constituency_route
 
 from app.routes import campaign_routes
 
@@ -26,6 +28,8 @@ app.add_middleware(ValidationErrorMiddleware)
 app.include_router(campaign_routes.router, prefix="/api/campaign",tags=["campaign"])
 
 app.include_router(organization_route.router, prefix="/api/org", tags=["Organization"])
+app.include_router(district_route.router, prefix="/api/district", tags=["Districts"])
+app.include_router(constituency_route.router, prefix="/api/district", tags=["Constituency"])
 
 @app.on_event('startup')
 async def startUp():
