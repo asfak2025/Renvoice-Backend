@@ -5,6 +5,8 @@ from fastapi.security import OAuth2PasswordBearer
 
 from app.routes import organization_route
 
+from app.routes import campaign_routes
+
 from app.validators.middleware_validation import ValidationErrorMiddleware
 
 app = FastAPI(title='TVK API')
@@ -20,6 +22,8 @@ app.add_middleware(
 
 
 app.add_middleware(ValidationErrorMiddleware)
+
+app.include_router(campaign_routes.router, prefix="/api/campaign",tags=["campaign"])
 
 app.include_router(organization_route.router, prefix="/api/org", tags=["Organization"])
 
